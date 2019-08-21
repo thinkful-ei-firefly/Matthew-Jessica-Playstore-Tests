@@ -48,4 +48,4 @@ app.get("/apps", (req, res) => {
   res.json(filteredData);
 });
 
-app.listen(8080, () => console.log("Server running.."));
+module.exports = app;
