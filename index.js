@@ -1,3 +1,4 @@
+/* eslint-disable strict */
 const express = require("express");
 const playStoreData = require("./playstore");
 
@@ -39,9 +40,16 @@ app.get("/apps", (req, res) => {
       data.Genres.toLowerCase().includes(genres.toLowerCase())
     );
   }
-  if (sort) {
+
+  if (sort === 'App') {
     filteredData = filteredData.sort((a, b) => {
-      return a[sort] > b[sort] ? 1 : a[sort] < b[sort] ? -1 : 0;
+      return a[sort].toUpperCase() > b[sort].toUpperCase() ? 1 : a[sort].toUpperCase() < b[sort].toUpperCase() ? -1 : 0;
+    });
+  }
+
+  if (sort === 'Rating') {
+    filteredData = filteredData.sort((a, b) => {
+      return b[sort] - a[sort];
     });
   }
 
